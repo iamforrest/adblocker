@@ -15,7 +15,7 @@ import type {
   IMessageFromBackground,
 } from '@cliqz/adblocker-electron-preload';
 
-import { PRELOAD_PATH } from './preload_path.js';
+// import { PRELOAD_PATH } from './preload_path.js';
 
 const { ipcMain } = electron;
 
@@ -64,6 +64,7 @@ export class BlockingContext {
     msg: IBackgroundCallback,
   ) => void;
 
+  // @ts-ignore
   private readonly onGetCosmeticFiltersFirst: (event: Electron.IpcMainEvent, url: string) => void;
 
   private readonly onHeadersReceived: (
@@ -71,6 +72,7 @@ export class BlockingContext {
     callback: (a: Electron.HeadersReceivedResponse) => void,
   ) => void;
 
+  // @ts-ignore
   private readonly onIsMutationObserverEnabled: (event: Electron.IpcMainEvent) => void;
 
   constructor(
@@ -88,10 +90,10 @@ export class BlockingContext {
 
   public enable(): void {
     if (this.blocker.config.loadCosmeticFilters === true) {
-      this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
-      ipcMain.on('get-cosmetic-filters-first', this.onGetCosmeticFiltersFirst);
-      ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFiltersUpdated);
-      ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+      // this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
+      // ipcMain.on('get-cosmetic-filters-first', this.onGetCosmeticFiltersFirst);
+      // ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFiltersUpdated);
+      // ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
     }
 
     if (this.blocker.config.loadNetworkFilters === true) {
@@ -115,7 +117,7 @@ export class BlockingContext {
     }
 
     if (this.blocker.config.loadCosmeticFilters === true) {
-      this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
+      // this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
       ipcMain.removeListener('get-cosmetic-filters', this.onGetCosmeticFiltersUpdated);
     }
   }
