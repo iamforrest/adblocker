@@ -1,5 +1,5 @@
 {
-  "name": "@cliqz/adblocker-electron",
+  "name": "@iamforrest/adblocker-electron",
   "version": "1.31.3",
   "description": "Ghostery adblocker Electron wrapper",
   "author": {
